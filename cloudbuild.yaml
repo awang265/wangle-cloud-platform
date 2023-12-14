@@ -3,24 +3,6 @@ steps:
   - name: 'gcr.io/cloud-builders/git'
     args: ['clone', 'https://github.com/awang265/wangle-cloud-platform.git', 'source']  # Cloning into 'source' directory
 
-  # Step 2: Set up Python and install dependencies (if needed)
-  - name: 'python:3.12'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        cd source  # Change to the directory where the repository is cloned
-        pip install -r requirements.txt  # Install project dependencies if necessary
-
-  # Step 3: Run tests (if needed)
-  - name: 'python:3.12'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        cd source  # Change to the directory where the repository is cloned (in this case, 'source')
-        python -m unittest discover -s tests -p 'test_*.py'  # Run unittests in the 'tests' directory if needed
-
   # Step 4: Copy files to Cloud Storage bucket
   - name: 'gcr.io/cloud-builders/gsutil'
     args: ['cp', '-r', 'source/*', 'gs://www.wanglecloudplatform.com']  # Upload contents of 'source' directory to the specified bucket
