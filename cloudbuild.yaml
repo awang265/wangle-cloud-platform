@@ -5,4 +5,4 @@ steps:
 
   # Step 4: Copy files to Cloud Storage bucket
   - name: 'gcr.io/cloud-builders/gsutil'
-    args: ['cp', '-r', 'source/*', 'gs://www.wanglecloudplatform.com']  # Upload contents of 'source' directory to the specified bucket
+    args: ['cp', '-r', 'source/website/*', 'gs://www.wanglecloudplatform.com']  # Upload contents of 'source' directory to the specified bucket
